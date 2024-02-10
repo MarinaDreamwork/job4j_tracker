@@ -1,12 +1,12 @@
 package ru.job4j.tracker;
 
 public class StartUI {
-    public static void createItem(Input input, Tracker tracker) {
-        System.out.println("=== Создание новой заявки ===");
-        String name = input.askStr("Введите имя: ");
-        Item item = new Item(name);
-        tracker.add(item);
-        System.out.println("Добавленная заявка: " + item);
+   public static void createItem(Input input, Tracker tracker) {
+       System.out.println("=== Создание новой заявки ===");
+       String name = input.askStr("Введите имя: ");
+       Item item = new Item(name);
+       tracker.add(item);
+       System.out.println("Добавленная заявка: " + item);
     }
 
     public static void findItemByName(Input input, Tracker tracker) {
@@ -54,8 +54,8 @@ public class StartUI {
     }
 
     public static void findAllItems(Tracker tracker) {
-        System.out.println("=== Вывод всех заявок ===");
-        Item[] items = tracker.findAll();
+       System.out.println("=== Вывод всех заявок ===");
+       Item[] items = tracker.findAll();
         if (items.length > 0) {
             for (Item item : items) {
                 System.out.println(item);
@@ -63,14 +63,13 @@ public class StartUI {
         } else {
             System.out.println("Хранилище еще не содержит заявок");
         }
-    }
+   }
 
     public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
             showMenu();
-            System.out.print("Выбрать: ");
-            int select = input.askInt("");
+            int select = input.askInt("Выбрать");
             if (select == 0) {
                 createItem(input, tracker);
             } else if (select == 1) {
