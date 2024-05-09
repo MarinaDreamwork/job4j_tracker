@@ -16,7 +16,7 @@ public class PhoneDictionary {
             boolean isSurname = person.getSurname().contains(key);
             boolean isPhone = person.getPhone().contains(key);
             boolean isAddress = person.getAddress().contains(key);
-            if(isName || isSurname || isPhone || isAddress) {
+            if (isName || isSurname || isPhone || isAddress) {
                 result.add(person);
             }
         }
