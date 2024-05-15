@@ -15,9 +15,18 @@ public class PassportOfficeTest {
     @Test
     public void whenTestAddMethodIsFalse() {
         Citizen citizen = new Citizen("65Ikdc4", "Max Maximov");
-        Citizen anotherCitizen = new Citizen("328Jg", "Ivan Ivanov");
+        Citizen anotherCitizen = new Citizen("65Ikdc4", "Ivan Ivanov");
         PassportOffice office = new PassportOffice();
         office.add(citizen);
         assertThat(office.add(anotherCitizen)).isFalse();
+    }
+
+    @Test
+    public void whenTestAddMethodIsTrue() {
+        Citizen citizen = new Citizen("65Ikdc4", "Max Maximov");
+        Citizen anotherCitizen = new Citizen("328Jg", "Ivan Ivanov");
+        PassportOffice office = new PassportOffice();
+        office.add(citizen);
+        assertThat(office.add(anotherCitizen)).isTrue();
     }
 }
