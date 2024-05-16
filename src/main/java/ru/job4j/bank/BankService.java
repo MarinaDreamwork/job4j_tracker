@@ -32,7 +32,7 @@ public class BankService {
 
     public User findByPassport(String passport) {
         for (User user : users.keySet()) {
-            if (user.getPassport() == passport) {
+            if (user.getPassport().equals(passport)) {
                 return user;
             }
         }
@@ -44,7 +44,7 @@ public class BankService {
         if (user != null) {
             List<Account> accounts = users.get(user);
             for (Account account : accounts) {
-                if (account.getRequisite() == requisite) {
+                if (account.getRequisite().equals(requisite)) {
                     return account;
                 }
             }
@@ -55,14 +55,11 @@ public class BankService {
     public boolean transferMoney(String sourcePassport, String sourceRequisite,
                                  String destinationPassport, String destinationRequisite,
                                  double amount) {
-        boolean result = false;
         Account sourceAccount = findByRequisite(sourcePassport, sourceRequisite);
         Account destAccount = findByRequisite(destinationPassport, destinationRequisite);
         if (sourceAccount == null || destAccount == null ||  sourceAccount.getBalance() - amount < 0) {
-            return result;
+            return false;
         }
-       // User sourceUser = findByPassport(sourcePassport);
-        //User destUser = findByPassport(destinationPassport);
 
         double sourceBalance = sourceAccount.getBalance();
         sourceAccount.setBalance(sourceBalance - amount);
@@ -70,7 +67,6 @@ public class BankService {
         double destBalance = destAccount.getBalance();
         destAccount.setBalance(destBalance + amount);
         return true;
-        //return result;
     }
 
     public List<Account> getAccounts(User user) {
