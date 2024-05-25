@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
@@ -32,12 +33,13 @@ public class AnalyzeByMap {
     }
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
-        Map<String, Integer> linkedMap = new LinkedHashMap<>();
+        Map<String, Integer> linkedMap = new HashMap<>();
         List<Label> labels = new LinkedList<>();
         for (Pupil pupil : pupils) {
-            for (Subject subject : pupil.subjects()) {
-                linkedMap.put(subject.name(), linkedMap.get(subject.name()) != null ? linkedMap.get(subject.name()) + subject.scope() : subject.scope());
-            }  
+            for (Subject subject : pupil.subjects()) { 
+                String name = subject.name();
+                linkedMap.put(subject.name(), linkedMap.getOrDefault(name, 0) + subject.scope()); 
+            }
         }
         for (String key : linkedMap.keySet()) {
             Integer value = linkedMap.get(key);
